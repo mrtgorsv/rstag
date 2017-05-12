@@ -86,7 +86,7 @@ namespace RstegApp.Logic
                     }
                     catch (Exception exp)
                     {
-                        //Console.WriteLine(Resources.ExceptionMessage, exp.Message);
+                        Console.WriteLine(Resources.ExceptionMessage, exp.Message);
                     }
                 }
                 //else Console.WriteLine("nnnnnnnnoo: {0}", Encoding.Unicode.GetString(_keyWord));

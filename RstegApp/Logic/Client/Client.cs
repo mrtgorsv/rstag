@@ -5,9 +5,10 @@ using RstegApp.Properties;
 
 namespace RstegApp.Logic.Client
 {
-    class Client
+    class Client : MessageReciever
     {
-        private readonly TcpClient _client;
+        private TcpClient _client;
+
 
         public Client(string ipAddress, short port)
         {
@@ -48,7 +49,7 @@ namespace RstegApp.Logic.Client
             client.GetStream().Write(bts, 0, bts.Length);
         }
 
-        private static string ReadRes(TcpClient client)
+        private string ReadRes(TcpClient client)
         {
             byte[] buf = new byte[256];
             int totread = 0;
@@ -57,7 +58,15 @@ namespace RstegApp.Logic.Client
                 int read = client.GetStream().Read(buf, totread, buf.Length - totread);
                 totread += read;
             } while (client.GetStream().DataAvailable);
-            return Encoding.Unicode.GetString(buf, 0, totread);
+
+            string message = Encoding.Unicode.GetString(buf, 0, totread);
+            OnMessageRecieved(message);
+            return message;
+        }
+
+        public void Stop()
+        {
+            _client = null;
         }
     }
 }

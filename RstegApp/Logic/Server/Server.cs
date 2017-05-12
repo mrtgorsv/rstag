@@ -7,7 +7,7 @@ using RstegApp.Properties;
 
 namespace RstegApp.Logic.Server
 {
-    class Server
+    class Server : MessageReciever
     {
         private Reader _reader;
         private TcpListener _listener;
@@ -44,8 +44,9 @@ namespace RstegApp.Logic.Server
                 totRead += read;
 
             } while (client.GetStream().DataAvailable);
-
-            return Encoding.Unicode.GetString(buf, 0, totRead);
+            string message = Encoding.Unicode.GetString(buf, 0, totRead);
+            OnMessageRecieved(message);
+            return message;
         }
 
         private static void SendResponse(TcpClient client, string mess)

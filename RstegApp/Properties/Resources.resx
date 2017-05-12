@@ -150,4 +150,13 @@
   <data name="KeyWord" xml:space="preserve">
     <value>_key</value>
   </data>
+  <data name="StegWord" xml:space="preserve">
+    <value>_steg</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
 </root>

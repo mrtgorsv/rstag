@@ -1,4 +1,6 @@
-﻿namespace RstegApp.Controls
+﻿using System;
+
+namespace RstegApp.Controls
 {
     public partial class NumericField : Field
     {
@@ -49,7 +51,7 @@
 
         public override void SetValue(object value)
         {
-            NumericUpDownControl.Value = (int) value;
+            NumericUpDownControl.Value = Convert.ToInt32(value);
         }
     }
 }
