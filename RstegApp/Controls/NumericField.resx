@@ -117,37 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ClientResponse" xml:space="preserve">
-    <value>Response {0}</value>
-  </data>
-  <data name="ClienEndMessage" xml:space="preserve">
-    <value>Enter '{0}' to end..</value>
-  </data>
-  <data name="ExceptionMessage" xml:space="preserve">
-    <value>Exception: {0}</value>
-  </data>
-  <data name="EnterTextMessage" xml:space="preserve">
-    <value>Enter your text..</value>
-  </data>
-  <data name="EndMessage" xml:space="preserve">
-    <value>END</value>
-  </data>
-  <data name="OkMessage" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="ConfirmMessage" xml:space="preserve">
-    <value>CONFIRM</value>
-  </data>
-  <data name="ConnectionMessage" xml:space="preserve">
-    <value>Connectiong...</value>
-  </data>
-  <data name="Message" xml:space="preserve">
-    <value>Message: {0}</value>
-  </data>
-  <data name="CloseConnection" xml:space="preserve">
-    <value>Connect close..</value>
-  </data>
-  <data name="KeyWord" xml:space="preserve">
-    <value>_key</value>
-  </data>
 </root>
