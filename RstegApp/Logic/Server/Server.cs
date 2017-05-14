@@ -3,33 +3,40 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using RstegApp.Properties;
 
 namespace RstegApp.Logic.Server
 {
-    class Server : MessageReciever
+    class Server : MessageBus
     {
         private Reader _reader;
         private TcpListener _listener;
+        private TcpClient _client;
+        public Server(string ipAdress, short port)
+        {
+            _reader = new Reader(port);
+
+            IPAddress host = IPAddress.Parse(ipAdress);
+            _listener = new TcpListener(host, port);
+        }
 
         private bool _started;
-        private void HandleClientThread(object obj)
+        private void ReadClient()
         {
-            TcpClient client = obj as TcpClient;
-            if (client != null)
+            if (_client != null)
             {
                 bool done = false;
                 while (!done)
                 {
-                    string message = ReadMes(client);
+                    string message = ReadMes(_client);
 
                     done = message.Equals(Resources.EndMessage);
                     if (done)
-                        SendResponse(client, Resources.EndMessage);
+                        SendResponse(_client, Resources.EndMessage);
                     else
-                        SendResponse(client, Resources.OkMessage);
+                        SendResponse(_client, Resources.OkMessage);
                 }
-                client.Close();
             }
         }
 
@@ -49,43 +56,23 @@ namespace RstegApp.Logic.Server
             return message;
         }
 
-        private static void SendResponse(TcpClient client, string mess)
+        private void SendResponse(TcpClient client, string mess)
         {
             byte[] byt = Encoding.Unicode.GetBytes(mess);
+
+            OnMessageSended(mess);
+
             client.GetStream().Write(byt, 0, byt.Length);
-        }
-
-
-        public Server(string ipAdress, int port)
-        {
-            _reader = new Reader();
-
-            IPAddress host = IPAddress.Parse(ipAdress);
-            _listener = new TcpListener(host, port);
         }
 
         public void Start()
         {
             Stop();
             _listener.Start();
-            _listener.Pending();
-            TcpClient client = _listener.AcceptTcpClient();
-            Thread thread = new Thread(HandleClientThread);
+            _reader.StartCapturing(true);
+            _client = _listener.AcceptTcpClient();
 
-            thread.Start(client);
-            while (_started)
-            {
-                if (client.Connected)
-                {
-                    try
-                    {
-                        _reader.Read(Resources.KeyWord);
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-                }
-            }
+            Task.Factory.StartNew(ReadClient);
         }
 
         public void Stop()

@@ -73,7 +73,7 @@
     <Compile Include="Controls\TextField.Designer.cs">
       <DependentUpon>TextField.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logic\MessageReciever.cs" />
+    <Compile Include="Logic\MessageBus.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

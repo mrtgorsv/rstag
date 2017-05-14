@@ -1,51 +1,60 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Net.Sockets;
 using RstegApp.Properties;
 
 namespace RstegApp.Logic.Client
 {
-    class Client : MessageReciever
+    class Client : MessageBus
     {
         private TcpClient _client;
+        private int _maxMessages = 10;
+        private Reader _reader;
 
 
         public Client(string ipAddress, short port)
         {
             _client = new TcpClient(ipAddress, port);
-        }
-
-        public void Send(string stegWord, string message, Reader reader)
-        {
             try
             {
-                reader.Read(Resources.KeyWord, stegWord);
+                _reader = new Reader(port);
+                _reader.StartCapturing(false);
             }
             catch (Exception e)
             {
                 //Console.WriteLine(Resources.ExceptionMessage, e.Message);
             }
-            //Console.WriteLine(Resources.ClienEndMessage, Resources.EndMessage);
-            SendMess(_client, message);
-
-            bool done = false;
-
-            while (!done)
-            {
-                string res = ReadRes(_client);
-
-                done = res.Equals(Resources.EndMessage);
-
-                if (done)
-                    SendMess(_client, Resources.EndMessage);
-                else
-                    SendMess(_client, Resources.OkMessage);
-            }
         }
 
-        private static void SendMess(TcpClient client, string mess)
+        public void Send(string stegWord, string message, bool sendKeyWord)
         {
+            SendMess(_client, message , sendKeyWord);
+
+            string res = ReadRes(_client);
+
+            if (res.Equals(Resources.EndMessage))
+                SendMess(_client, Resources.EndMessage);
+            else
+                SendMess(_client, Resources.OkMessage);
+        }
+
+        private void SendMess(TcpClient client, string mess , bool sendKeyWord = false)
+        {
+
             byte[] bts = Encoding.Unicode.GetBytes(mess);
+            if (sendKeyWord)
+            {
+                byte[] btsTmp = new byte[bts.Length];
+                Array.Copy(bts, btsTmp,bts.Length);
+                var keyBytes = Encoding.Unicode.GetBytes(Resources.KeyWord);
+
+                bts = new byte[bts.Length + keyBytes.Length];
+                btsTmp.CopyTo(bts, 0);
+                keyBytes.CopyTo(bts, keyBytes.Length);
+            }
+
+            OnMessageSended(Encoding.Unicode.GetString(bts));
             client.GetStream().Write(bts, 0, bts.Length);
         }
 

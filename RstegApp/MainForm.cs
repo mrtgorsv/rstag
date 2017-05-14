@@ -18,16 +18,25 @@ namespace RstegApp
         {
             InitializeComponent();
             InitializePresenter();
+
             InitClientFields();
             InitServerFields();
+
             InitOutput();
+
+            KeySendCheckBox.CheckedChanged += OnKeySendCheckedChanged;
 
             synchronizationContext = SynchronizationContext.Current;
         }
 
+        private void OnKeySendCheckedChanged(object sender, EventArgs e)
+        {
+            CurrentPresenter.SendKey = KeySendCheckBox.Checked;
+        }
+
         private void InitOutput()
         {
-            CurrentPresenter.MessageRecieved += OnMessageRecieved;
+            CurrentPresenter.MessageRecieve += OnMessageRecieve;
         }
 
         private void InitializePresenter()
@@ -121,7 +130,7 @@ namespace RstegApp
         {
             CurrentPresenter.ClientIp = myargs.NewValue.ToString();
         }
-        private void OnMessageRecieved(object myobject, MessageRecieveEventArgs myargs)
+        private void OnMessageRecieve(object myobject, MessageEventArgs myargs)
         {
             synchronizationContext.Send(_ =>
             {

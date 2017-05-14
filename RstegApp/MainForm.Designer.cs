@@ -33,8 +33,9 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.ClientIpField = new RstegApp.Controls.TextField();
             this.CilentPortField = new RstegApp.Controls.NumericField();
-            this.ClientMessageField = new RstegApp.Controls.TextField();
             this.ClientRunButton = new System.Windows.Forms.Button();
+            this.ClientMessageField = new RstegApp.Controls.TextField();
+            this.SendMessageButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.ServerIPField = new RstegApp.Controls.TextField();
@@ -43,7 +44,7 @@
             this.OutputTextBox = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.SendMessageButton = new System.Windows.Forms.Button();
+            this.KeySendCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -61,7 +62,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 16);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(319, 242);
+            this.tabControl1.Size = new System.Drawing.Size(319, 317);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -70,7 +71,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(311, 216);
+            this.tabPage1.Size = new System.Drawing.Size(311, 291);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ClientModel";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -81,12 +82,13 @@
             this.flowLayoutPanel1.Controls.Add(this.CilentPortField);
             this.flowLayoutPanel1.Controls.Add(this.ClientRunButton);
             this.flowLayoutPanel1.Controls.Add(this.ClientMessageField);
+            this.flowLayoutPanel1.Controls.Add(this.KeySendCheckBox);
             this.flowLayoutPanel1.Controls.Add(this.SendMessageButton);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(305, 210);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(305, 285);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // ClientIpField
@@ -107,15 +109,6 @@
             this.CilentPortField.Size = new System.Drawing.Size(280, 30);
             this.CilentPortField.TabIndex = 1;
             // 
-            // ClientMessageField
-            // 
-            this.ClientMessageField.Location = new System.Drawing.Point(3, 104);
-            this.ClientMessageField.MaximumSize = new System.Drawing.Size(0, 30);
-            this.ClientMessageField.MinimumSize = new System.Drawing.Size(280, 30);
-            this.ClientMessageField.Name = "ClientMessageField";
-            this.ClientMessageField.Size = new System.Drawing.Size(280, 30);
-            this.ClientMessageField.TabIndex = 2;
-            // 
             // ClientRunButton
             // 
             this.ClientRunButton.Location = new System.Drawing.Point(3, 75);
@@ -126,13 +119,32 @@
             this.ClientRunButton.UseVisualStyleBackColor = true;
             this.ClientRunButton.Click += new System.EventHandler(this.ClientRunButton_Click);
             // 
+            // ClientMessageField
+            // 
+            this.ClientMessageField.Location = new System.Drawing.Point(3, 104);
+            this.ClientMessageField.MaximumSize = new System.Drawing.Size(0, 30);
+            this.ClientMessageField.MinimumSize = new System.Drawing.Size(280, 30);
+            this.ClientMessageField.Name = "ClientMessageField";
+            this.ClientMessageField.Size = new System.Drawing.Size(280, 30);
+            this.ClientMessageField.TabIndex = 2;
+            // 
+            // SendMessageButton
+            // 
+            this.SendMessageButton.Location = new System.Drawing.Point(3, 163);
+            this.SendMessageButton.Name = "SendMessageButton";
+            this.SendMessageButton.Size = new System.Drawing.Size(299, 23);
+            this.SendMessageButton.TabIndex = 4;
+            this.SendMessageButton.Text = "Send";
+            this.SendMessageButton.UseVisualStyleBackColor = true;
+            this.SendMessageButton.Click += new System.EventHandler(this.SendMessageButton_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.flowLayoutPanel2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(311, 235);
+            this.tabPage2.Size = new System.Drawing.Size(311, 216);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ServerModel";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -145,7 +157,7 @@
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(305, 229);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(305, 210);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // ServerIPField
@@ -181,7 +193,7 @@
             this.OutputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OutputTextBox.Location = new System.Drawing.Point(3, 16);
             this.OutputTextBox.Name = "OutputTextBox";
-            this.OutputTextBox.Size = new System.Drawing.Size(524, 242);
+            this.OutputTextBox.Size = new System.Drawing.Size(524, 317);
             this.OutputTextBox.TabIndex = 1;
             this.OutputTextBox.Text = "";
             // 
@@ -191,7 +203,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(324, 261);
+            this.groupBox1.Size = new System.Drawing.Size(324, 336);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Settings";
@@ -202,33 +214,36 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(324, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(530, 261);
+            this.groupBox2.Size = new System.Drawing.Size(530, 336);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Output";
             // 
-            // SendMessageButton
+            // KeySendCheckBox
             // 
-            this.SendMessageButton.Location = new System.Drawing.Point(3, 140);
-            this.SendMessageButton.Name = "SendMessageButton";
-            this.SendMessageButton.Size = new System.Drawing.Size(299, 23);
-            this.SendMessageButton.TabIndex = 4;
-            this.SendMessageButton.Text = "Send";
-            this.SendMessageButton.UseVisualStyleBackColor = true;
-            this.SendMessageButton.Click += new System.EventHandler(this.SendMessageButton_Click);
+            this.KeySendCheckBox.AutoSize = true;
+            this.KeySendCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.KeySendCheckBox.Location = new System.Drawing.Point(3, 140);
+            this.KeySendCheckBox.MinimumSize = new System.Drawing.Size(172, 0);
+            this.KeySendCheckBox.Name = "KeySendCheckBox";
+            this.KeySendCheckBox.Size = new System.Drawing.Size(172, 17);
+            this.KeySendCheckBox.TabIndex = 5;
+            this.KeySendCheckBox.Text = "Send Key Word";
+            this.KeySendCheckBox.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 261);
+            this.ClientSize = new System.Drawing.Size(854, 336);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "RSteg Application";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -255,6 +270,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button SendMessageButton;
+        private System.Windows.Forms.CheckBox KeySendCheckBox;
     }
 }
 
