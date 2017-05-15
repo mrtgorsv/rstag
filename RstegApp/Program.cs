@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace RstegApp
@@ -13,9 +14,13 @@ namespace RstegApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            SetDllDirectory(AppDomain.CurrentDomain.BaseDirectory + "Libraries");
+
             Application.Run(new MainForm());
         }
 
-
+        [DllImport("Kernel32.dll", CallingConvention = CallingConvention.StdCall)]
+        public static extern bool SetDllDirectory(String lpPathName);
     }
 }

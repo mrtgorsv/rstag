@@ -16,8 +16,9 @@ namespace RstegApp.Presenters
 
         public MainFormPresenter()
         {
-            var defIp = "192.168.1.35";
             short defPort = 2017;
+
+            var defIp = "192.168.48.170";
             ClientIp =
                 ServerIp = defIp;
             ServerPort =
@@ -28,7 +29,7 @@ namespace RstegApp.Presenters
             StegWord = Resources.StegWord;
         }
 
-        private void DoLockTask(Action action)
+        private void DoTask(Action action)
         {
             Task.Factory.StartNew(action);
         }
@@ -62,7 +63,7 @@ namespace RstegApp.Presenters
 
         private void StopServer()
         {
-            DoLockTask(() =>
+            DoTask(() =>
             {
                 if (_server == null)
                 {
@@ -72,6 +73,7 @@ namespace RstegApp.Presenters
                 _server.Stop();
                 _server.MessageRecieve -= OnServerMessageRecieve;
                 _server.MessageSend -= OnServerMessageSend;
+                _server.Message -= OnServerMessage;
                 _server = null;
             });
         }
@@ -80,12 +82,13 @@ namespace RstegApp.Presenters
         private void RunServer()
         {
             StopServer();
-            DoLockTask(() =>
+            DoTask(() =>
             {
                 _server = new Server(ServerIp, ServerPort);
-                _server.Start();
                 _server.MessageRecieve += OnServerMessageRecieve;
                 _server.MessageSend += OnServerMessageSend;
+                _server.Message += OnServerMessage;
+                _server.Start();
             });
         }
 
@@ -120,27 +123,32 @@ namespace RstegApp.Presenters
 
         public void SendClientMessage()
         {
-            DoLockTask(() => { _client.Send(StegWord, ClientMessage, SendKey); });
+            DoTask(() =>
+            {
+                _client.Send(StegWord, ClientMessage, SendKey);
+            });
         }
 
         private void StopClient()
         {
-            DoLockTask(() =>
+            DoTask(() =>
             {
                 _client.Stop();
                 _client.MessageRecieve -= OnClientMessageRecieve;
-                _client.MessageSend -= OnClientMessageSend;
+                _client.Message -= OnClientMessage;
                 _client = null;
             });
         }
 
+
         private void RunClient()
         {
-            DoLockTask(() =>
+            DoTask(() =>
             {
                 _client = new Client(ClientIp, ClientPort);
                 _client.MessageRecieve += OnClientMessageRecieve;
                 _client.MessageSend += OnClientMessageSend;
+                _client.Message += OnClientMessage;
             });
         }
 
@@ -166,6 +174,15 @@ namespace RstegApp.Presenters
         private void OnServerMessageSend(object myobject, MessageEventArgs myargs)
         {
             OnMessageRecieved(string.Format("Server : Send {0}", myargs.Message));
+        }
+        private void OnClientMessage(object myobject, MessageEventArgs myargs)
+        {
+            OnMessageRecieved(string.Format("Client : {0}", myargs.Message));
+        }
+
+        private void OnServerMessage(object myobject, MessageEventArgs myargs)
+        {
+            OnMessageRecieved(string.Format("Server : {0}", myargs.Message));
         }
 
         #endregion

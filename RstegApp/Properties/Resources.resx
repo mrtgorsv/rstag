@@ -133,7 +133,7 @@
     <value>END</value>
   </data>
   <data name="OkMessage" xml:space="preserve">
-    <value>OK</value>
+    <value>CONFIRM</value>
   </data>
   <data name="ConfirmMessage" xml:space="preserve">
     <value>CONFIRM</value>

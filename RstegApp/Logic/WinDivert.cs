@@ -862,7 +862,7 @@ public class WinDivertMethods
     ///layer: WINDIVERT_LAYER->Anonymous_d7dac89f_91f7_4aca_b997_239f157c8039
     ///priority: INT16->short
     ///flags: UINT64->unsigned __int64
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertOpen")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertOpen" , SetLastError = true)]
     public static extern IntPtr WinDivertOpen([In] [MarshalAs(UnmanagedType.LPStr)] string filter, WINDIVERT_LAYER layer, short priority, ulong flags);
 
     /// Return Type: BOOL->int
@@ -871,7 +871,7 @@ public class WinDivertMethods
     ///packetLen: UINT->unsigned int
     ///pAddr: PWINDIVERT_ADDRESS->Anonymous_7d42ad21_898e_4fdf_a30d_dc1e2c77a38f*
     ///readLen: UINT*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertRecv")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertRecv", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertRecv([In] IntPtr handle, byte[] pPacket, uint packetLen, ref WINDIVERT_ADDRESS pAddr, ref uint readLen);
 
@@ -883,7 +883,7 @@ public class WinDivertMethods
     ///pAddr: PWINDIVERT_ADDRESS->Anonymous_7d42ad21_898e_4fdf_a30d_dc1e2c77a38f*
     ///readLen: UINT*
     ///lpOverlapped: LPOVERLAPPED->_OVERLAPPED*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertRecvEx")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertRecvEx", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertRecvEx([In] IntPtr handle, byte[] pPacket, uint packetLen, ulong flags, IntPtr pAddr, IntPtr readLen, IntPtr lpOverlapped);
 
@@ -893,7 +893,7 @@ public class WinDivertMethods
     ///packetLen: UINT->unsigned int
     ///pAddr: PWINDIVERT_ADDRESS->Anonymous_7d42ad21_898e_4fdf_a30d_dc1e2c77a38f*
     ///writeLen: UINT*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertSend")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertSend", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertSend([In] IntPtr handle, [In] byte[] pPacket, uint packetLen, [In] ref WINDIVERT_ADDRESS pAddr, IntPtr writeLen);
 
@@ -905,13 +905,13 @@ public class WinDivertMethods
     ///pAddr: PWINDIVERT_ADDRESS->Anonymous_7d42ad21_898e_4fdf_a30d_dc1e2c77a38f*
     ///writeLen: UINT*
     ///lpOverlapped: LPOVERLAPPED->_OVERLAPPED*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertSendEx")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertSendEx", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertSendEx([In] IntPtr handle, [In] byte[] pPacket, uint packetLen, ulong flags, [In] ref WINDIVERT_ADDRESS pAddr, IntPtr writeLen, IntPtr lpOverlapped);
 
     /// Return Type: BOOL->int
     ///handle: HANDLE->void*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertClose")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertClose", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertClose([In] IntPtr handle);
 
@@ -919,7 +919,7 @@ public class WinDivertMethods
     ///handle: HANDLE->void*
     ///param: WINDIVERT_PARAM->Anonymous_e5050871_9359_4204_b35d_ed31a2bded35
     ///value: UINT64->unsigned __int64
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertSetParam")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertSetParam", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertSetParam([In] IntPtr handle, WINDIVERT_PARAM param, ulong value);
 
@@ -927,7 +927,7 @@ public class WinDivertMethods
     ///handle: HANDLE->void*
     ///param: WINDIVERT_PARAM->Anonymous_e5050871_9359_4204_b35d_ed31a2bded35
     ///pValue: UINT64*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertGetParam")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertGetParam", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertGetParam([In] IntPtr handle, WINDIVERT_PARAM param, [Out] out ulong pValue);
 
@@ -942,21 +942,21 @@ public class WinDivertMethods
     ///ppUdpHdr: PWINDIVERT_UDPHDR*
     ///ppData: PVOID*
     ///pDataLen: UINT*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperParsePacket")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperParsePacket", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static unsafe extern bool WinDivertHelperParsePacket([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)]byte[] pPacket, uint packetLen, WINDIVERT_IPHDR** ppIpHdr, WINDIVERT_IPV6HDR** ppIpv6Hdr, WINDIVERT_ICMPHDR** ppIcmpHdr, WINDIVERT_ICMPV6HDR** ppIcmpv6Hdr, WINDIVERT_TCPHDR** ppTcpHdr, WINDIVERT_UDPHDR** ppUdpHdr, byte** ppData, uint* pDataLen);
 
     /// Return Type: BOOL->int
     ///addrStr: char*
     ///pAddr: UINT32*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperParseIPv4Address")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperParseIPv4Address", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertHelperParseIPv4Address([In] [MarshalAs(UnmanagedType.LPStr)] string addrStr, IntPtr pAddr);
 
     /// Return Type: BOOL->int
     ///addrStr: char*
     ///pAddr: UINT32*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperParseIPv6Address")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperParseIPv6Address", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertHelperParseIPv6Address([In] [MarshalAs(UnmanagedType.LPStr)] string addrStr, IntPtr pAddr);
 
@@ -964,7 +964,7 @@ public class WinDivertMethods
     ///pPacket: PVOID->void*
     ///packetLen: UINT->unsigned int
     ///flags: UINT64->unsigned __int64
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperCalcChecksums")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperCalcChecksums", SetLastError = true)]
     public static extern uint WinDivertHelperCalcChecksums(byte[] pPacket, uint packetLen, ulong flags);
 
     /// Return Type: BOOL->int
@@ -972,7 +972,7 @@ public class WinDivertMethods
     ///layer: WINDIVERT_LAYER->Anonymous_d7dac89f_91f7_4aca_b997_239f157c8039
     ///errorStr: char**
     ///errorPos: UINT*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperCheckFilter")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperCheckFilter", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertHelperCheckFilter([In] [MarshalAs(UnmanagedType.LPStr)] string filter, WINDIVERT_LAYER layer, ref IntPtr errorStr, IntPtr errorPos);
 
@@ -982,7 +982,7 @@ public class WinDivertMethods
     ///pPacket: PVOID->void*
     ///packetLen: UINT->unsigned int
     ///pAddr: PWINDIVERT_ADDRESS->Anonymous_7d42ad21_898e_4fdf_a30d_dc1e2c77a38f*
-    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperEvalFilter")]
+    [DllImport("WinDivert.dll", EntryPoint = "WinDivertHelperEvalFilter", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool WinDivertHelperEvalFilter([In] [MarshalAs(UnmanagedType.LPStr)] string filter, WINDIVERT_LAYER layer, [In] byte[] pPacket, uint packetLen, [In] ref WINDIVERT_ADDRESS pAddr);
 }

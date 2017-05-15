@@ -31,20 +31,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.ClientIpField = new RstegApp.Controls.TextField();
-            this.CilentPortField = new RstegApp.Controls.NumericField();
             this.ClientRunButton = new System.Windows.Forms.Button();
-            this.ClientMessageField = new RstegApp.Controls.TextField();
+            this.KeySendCheckBox = new System.Windows.Forms.CheckBox();
             this.SendMessageButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.ServerIPField = new RstegApp.Controls.TextField();
-            this.ServerPortField = new RstegApp.Controls.NumericField();
             this.RunServerBtn = new System.Windows.Forms.Button();
             this.OutputTextBox = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.KeySendCheckBox = new System.Windows.Forms.CheckBox();
+            this.ClientIpField = new RstegApp.Controls.TextField();
+            this.CilentPortField = new RstegApp.Controls.NumericField();
+            this.ClientMessageField = new RstegApp.Controls.TextField();
+            this.ServerIPField = new RstegApp.Controls.TextField();
+            this.ServerPortField = new RstegApp.Controls.NumericField();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -73,7 +73,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(311, 291);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "ClientModel";
+            this.tabPage1.Text = "Client";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel1
@@ -91,24 +91,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(305, 285);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
-            // ClientIpField
-            // 
-            this.ClientIpField.Location = new System.Drawing.Point(3, 3);
-            this.ClientIpField.MaximumSize = new System.Drawing.Size(0, 30);
-            this.ClientIpField.MinimumSize = new System.Drawing.Size(280, 30);
-            this.ClientIpField.Name = "ClientIpField";
-            this.ClientIpField.Size = new System.Drawing.Size(280, 30);
-            this.ClientIpField.TabIndex = 0;
-            // 
-            // CilentPortField
-            // 
-            this.CilentPortField.Location = new System.Drawing.Point(3, 39);
-            this.CilentPortField.MaximumSize = new System.Drawing.Size(0, 30);
-            this.CilentPortField.MinimumSize = new System.Drawing.Size(280, 30);
-            this.CilentPortField.Name = "CilentPortField";
-            this.CilentPortField.Size = new System.Drawing.Size(280, 30);
-            this.CilentPortField.TabIndex = 1;
-            // 
             // ClientRunButton
             // 
             this.ClientRunButton.Location = new System.Drawing.Point(3, 75);
@@ -119,14 +101,17 @@
             this.ClientRunButton.UseVisualStyleBackColor = true;
             this.ClientRunButton.Click += new System.EventHandler(this.ClientRunButton_Click);
             // 
-            // ClientMessageField
+            // KeySendCheckBox
             // 
-            this.ClientMessageField.Location = new System.Drawing.Point(3, 104);
-            this.ClientMessageField.MaximumSize = new System.Drawing.Size(0, 30);
-            this.ClientMessageField.MinimumSize = new System.Drawing.Size(280, 30);
-            this.ClientMessageField.Name = "ClientMessageField";
-            this.ClientMessageField.Size = new System.Drawing.Size(280, 30);
-            this.ClientMessageField.TabIndex = 2;
+            this.KeySendCheckBox.AutoSize = true;
+            this.KeySendCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.KeySendCheckBox.Location = new System.Drawing.Point(3, 140);
+            this.KeySendCheckBox.MinimumSize = new System.Drawing.Size(172, 0);
+            this.KeySendCheckBox.Name = "KeySendCheckBox";
+            this.KeySendCheckBox.Size = new System.Drawing.Size(172, 17);
+            this.KeySendCheckBox.TabIndex = 5;
+            this.KeySendCheckBox.Text = "Send Key Word";
+            this.KeySendCheckBox.UseVisualStyleBackColor = true;
             // 
             // SendMessageButton
             // 
@@ -144,9 +129,9 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(311, 216);
+            this.tabPage2.Size = new System.Drawing.Size(311, 291);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "ServerModel";
+            this.tabPage2.Text = "Server";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel2
@@ -157,26 +142,8 @@
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(305, 210);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(305, 285);
             this.flowLayoutPanel2.TabIndex = 0;
-            // 
-            // ServerIPField
-            // 
-            this.ServerIPField.Location = new System.Drawing.Point(3, 3);
-            this.ServerIPField.MaximumSize = new System.Drawing.Size(0, 30);
-            this.ServerIPField.MinimumSize = new System.Drawing.Size(280, 30);
-            this.ServerIPField.Name = "ServerIPField";
-            this.ServerIPField.Size = new System.Drawing.Size(280, 30);
-            this.ServerIPField.TabIndex = 0;
-            // 
-            // ServerPortField
-            // 
-            this.ServerPortField.Location = new System.Drawing.Point(3, 39);
-            this.ServerPortField.MaximumSize = new System.Drawing.Size(0, 30);
-            this.ServerPortField.MinimumSize = new System.Drawing.Size(280, 30);
-            this.ServerPortField.Name = "ServerPortField";
-            this.ServerPortField.Size = new System.Drawing.Size(280, 30);
-            this.ServerPortField.TabIndex = 1;
             // 
             // RunServerBtn
             // 
@@ -219,17 +186,50 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Output";
             // 
-            // KeySendCheckBox
+            // ClientIpField
             // 
-            this.KeySendCheckBox.AutoSize = true;
-            this.KeySendCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.KeySendCheckBox.Location = new System.Drawing.Point(3, 140);
-            this.KeySendCheckBox.MinimumSize = new System.Drawing.Size(172, 0);
-            this.KeySendCheckBox.Name = "KeySendCheckBox";
-            this.KeySendCheckBox.Size = new System.Drawing.Size(172, 17);
-            this.KeySendCheckBox.TabIndex = 5;
-            this.KeySendCheckBox.Text = "Send Key Word";
-            this.KeySendCheckBox.UseVisualStyleBackColor = true;
+            this.ClientIpField.Location = new System.Drawing.Point(3, 3);
+            this.ClientIpField.MaximumSize = new System.Drawing.Size(0, 30);
+            this.ClientIpField.MinimumSize = new System.Drawing.Size(280, 30);
+            this.ClientIpField.Name = "ClientIpField";
+            this.ClientIpField.Size = new System.Drawing.Size(280, 30);
+            this.ClientIpField.TabIndex = 0;
+            // 
+            // CilentPortField
+            // 
+            this.CilentPortField.Location = new System.Drawing.Point(3, 39);
+            this.CilentPortField.MaximumSize = new System.Drawing.Size(0, 30);
+            this.CilentPortField.MinimumSize = new System.Drawing.Size(280, 30);
+            this.CilentPortField.Name = "CilentPortField";
+            this.CilentPortField.Size = new System.Drawing.Size(280, 30);
+            this.CilentPortField.TabIndex = 1;
+            // 
+            // ClientMessageField
+            // 
+            this.ClientMessageField.Location = new System.Drawing.Point(3, 104);
+            this.ClientMessageField.MaximumSize = new System.Drawing.Size(0, 30);
+            this.ClientMessageField.MinimumSize = new System.Drawing.Size(280, 30);
+            this.ClientMessageField.Name = "ClientMessageField";
+            this.ClientMessageField.Size = new System.Drawing.Size(280, 30);
+            this.ClientMessageField.TabIndex = 2;
+            // 
+            // ServerIPField
+            // 
+            this.ServerIPField.Location = new System.Drawing.Point(3, 3);
+            this.ServerIPField.MaximumSize = new System.Drawing.Size(0, 30);
+            this.ServerIPField.MinimumSize = new System.Drawing.Size(280, 30);
+            this.ServerIPField.Name = "ServerIPField";
+            this.ServerIPField.Size = new System.Drawing.Size(280, 30);
+            this.ServerIPField.TabIndex = 0;
+            // 
+            // ServerPortField
+            // 
+            this.ServerPortField.Location = new System.Drawing.Point(3, 39);
+            this.ServerPortField.MaximumSize = new System.Drawing.Size(0, 30);
+            this.ServerPortField.MinimumSize = new System.Drawing.Size(280, 30);
+            this.ServerPortField.Name = "ServerPortField";
+            this.ServerPortField.Size = new System.Drawing.Size(280, 30);
+            this.ServerPortField.TabIndex = 1;
             // 
             // MainForm
             // 

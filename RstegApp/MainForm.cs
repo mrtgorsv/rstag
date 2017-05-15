@@ -12,7 +12,7 @@ namespace RstegApp
     {
 
         public MainFormPresenter CurrentPresenter { get; set; }
-        private SynchronizationContext synchronizationContext;
+        private readonly SynchronizationContext _synchronizationContext;
 
         public MainForm()
         {
@@ -26,7 +26,7 @@ namespace RstegApp
 
             KeySendCheckBox.CheckedChanged += OnKeySendCheckedChanged;
 
-            synchronizationContext = SynchronizationContext.Current;
+            _synchronizationContext = SynchronizationContext.Current;
         }
 
         private void OnKeySendCheckedChanged(object sender, EventArgs e)
@@ -132,7 +132,7 @@ namespace RstegApp
         }
         private void OnMessageRecieve(object myobject, MessageEventArgs myargs)
         {
-            synchronizationContext.Send(_ =>
+            _synchronizationContext.Send(_ =>
             {
                 OutputTextBox.AppendText(myargs.Message + "\n");
             } , this);

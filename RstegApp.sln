@@ -1,16 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RstegApp", "RstegApp\RstegApp.csproj", "{825424B8-A07B-46F0-9E56-6DDF0B804D32}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DropPacket", "DropPacket\DropPacket.vcxproj", "{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{8EF1B385-2AD8-48AD-8692-DCC0ED8E412B}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Downloads\WinPcap_4_1_3.exe = ..\..\..\Downloads\WinPcap_4_1_3.exe
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,16 +27,6 @@ Global
 		{825424B8-A07B-46F0-9E56-6DDF0B804D32}.Release|x64.Build.0 = Release|Any CPU
 		{825424B8-A07B-46F0-9E56-6DDF0B804D32}.Release|x86.ActiveCfg = Release|Any CPU
 		{825424B8-A07B-46F0-9E56-6DDF0B804D32}.Release|x86.Build.0 = Release|Any CPU
-		{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}.Debug|x64.ActiveCfg = Debug|x64
-		{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}.Debug|x64.Build.0 = Debug|x64
-		{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}.Debug|x86.ActiveCfg = Debug|Win32
-		{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}.Debug|x86.Build.0 = Debug|Win32
-		{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}.Release|Any CPU.ActiveCfg = Release|Win32
-		{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}.Release|x64.ActiveCfg = Release|x64
-		{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}.Release|x64.Build.0 = Release|x64
-		{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}.Release|x86.ActiveCfg = Release|Win32
-		{C8394848-DAE8-4E9C-B5DA-AB9EAB8ABE74}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
