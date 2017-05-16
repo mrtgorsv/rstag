@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -70,6 +71,12 @@
     <Compile Include="Controls\TextField.Designer.cs">
       <DependentUpon>TextField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AboutWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutWindow.Designer.cs">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logic\MessageBus.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -87,6 +94,9 @@
     <Compile Include="Presenters\MainFormPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AboutWindow.resx">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -98,8 +108,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Libraries\test.pcapng" />
-    <None Include="Libraries\WinDivert32.sys" />
-    <None Include="Libraries\WinDivert64.sys" />
+    <None Include="Libraries\WinDivert32.sys">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Libraries\WinDivert64.sys">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -110,15 +124,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="WinDivert32.sys" />
-    <None Include="WinDivert64.sys" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Libraries\WinDivert.dll" />
-    <Content Include="Libraries\WinPcap_4_1_3.exe" />
+    <Content Include="Libraries\WinDivert.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libraries\WinPcap_4_1_3.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

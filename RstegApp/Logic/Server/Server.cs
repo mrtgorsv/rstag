@@ -87,14 +87,23 @@ namespace RstegApp.Logic.Server
             client.GetStream().Write(byt, 0, byt.Length);
         }
 
-        public void Start()
+        public bool Start()
         {
-            _listener.Start();
-            _packetCapturer.StartCapturing(true);
+            try
+            {
+                _listener.Start();
+                _packetCapturer.StartCapturing(true);
 
-            _client = _listener.AcceptTcpClient();
+                _client = _listener.AcceptTcpClient();
 
-            Task.Factory.StartNew(ReadClient);
+                Task.Factory.StartNew(ReadClient);
+                return true;
+            }
+            catch (Exception e)
+            {
+                OnMessage(string.Format(Resources.ExceptionMessage , e.Message));
+                return false;
+            }
         }
 
         public void Dispose()

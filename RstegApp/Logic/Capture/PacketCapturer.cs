@@ -109,7 +109,7 @@ namespace RstegApp.Logic.Capture
             {
                 _dropPacket = true;
                 _dropPacketCount = _random.Next(2, 4);
-                _dropHandler = WinDivertMethods.WinDivertOpen(string.Format(Resources.PacketFilterTemplate, _port),
+                _dropHandler = WinDivertMethods.WinDivertOpen(string.Format(Resources.Template_PacketFilter, _port),
                     WINDIVERT_LAYER.WINDIVERT_LAYER_NETWORK, 0, 0);
 
                 OnMessage(Resources.DropPacketInitializeMessage);
@@ -140,7 +140,7 @@ namespace RstegApp.Logic.Capture
 
                         _dropPacketCount--;
 
-                        OnMessage(string.Format(Resources.DropPacketTemplate, _dropPacketCount));
+                        OnMessage(string.Format(Resources.Template_DropPacket, _dropPacketCount));
                     }
                 }
                 WinDivertMethods.WinDivertClose(_dropHandler);
@@ -191,7 +191,7 @@ namespace RstegApp.Logic.Capture
                 OnMessage(Resources.StegonographyInitializeMessage);
                 unsafe
                 {
-                    _stegHandler = WinDivertMethods.WinDivertOpen(string.Format(Resources.DestinationFilterTemplate, _port),
+                    _stegHandler = WinDivertMethods.WinDivertOpen(string.Format(Resources.Template_DestinationFilter, _port),
                         WINDIVERT_LAYER.WINDIVERT_LAYER_NETWORK, 0, 0);
 
                     while (_stegPacketCount > 0)

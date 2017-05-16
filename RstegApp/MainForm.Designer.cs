@@ -1,4 +1,6 @@
-﻿namespace RstegApp
+﻿using RstegApp.Properties;
+
+namespace RstegApp
 {
     partial class MainForm
     {
@@ -76,7 +78,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(311, 267);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Client";
+            this.tabPage1.Text = Resources.Client;
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel1
@@ -118,7 +120,7 @@
             this.ClientRunButton.Name = "ClientRunButton";
             this.ClientRunButton.Size = new System.Drawing.Size(299, 23);
             this.ClientRunButton.TabIndex = 3;
-            this.ClientRunButton.Text = "Run";
+            this.ClientRunButton.Text = Resources.Run;
             this.ClientRunButton.UseVisualStyleBackColor = true;
             this.ClientRunButton.Click += new System.EventHandler(this.ClientRunButton_Click);
             // 
@@ -140,7 +142,7 @@
             this.KeySendCheckBox.Name = "KeySendCheckBox";
             this.KeySendCheckBox.Size = new System.Drawing.Size(172, 17);
             this.KeySendCheckBox.TabIndex = 5;
-            this.KeySendCheckBox.Text = "Send Key Word";
+            this.KeySendCheckBox.Text = Resources.SendKeyWord;
             this.KeySendCheckBox.UseVisualStyleBackColor = true;
             // 
             // SendMessageButton
@@ -149,7 +151,7 @@
             this.SendMessageButton.Name = "SendMessageButton";
             this.SendMessageButton.Size = new System.Drawing.Size(299, 23);
             this.SendMessageButton.TabIndex = 4;
-            this.SendMessageButton.Text = "Send";
+            this.SendMessageButton.Text = Resources.Send;
             this.SendMessageButton.UseVisualStyleBackColor = true;
             this.SendMessageButton.Click += new System.EventHandler(this.SendMessageButton_Click);
             // 
@@ -161,7 +163,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(311, 267);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Server";
+            this.tabPage2.Text = Resources.Server;
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel2
@@ -199,7 +201,7 @@
             this.RunServerBtn.Name = "RunServerBtn";
             this.RunServerBtn.Size = new System.Drawing.Size(299, 23);
             this.RunServerBtn.TabIndex = 2;
-            this.RunServerBtn.Text = "Run";
+            this.RunServerBtn.Text = Resources.Run;
             this.RunServerBtn.UseVisualStyleBackColor = true;
             this.RunServerBtn.Click += new System.EventHandler(this.RunServerBtn_Click);
             // 
@@ -210,7 +212,7 @@
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.Size = new System.Drawing.Size(524, 293);
             this.OutputTextBox.TabIndex = 1;
-            this.OutputTextBox.Text = "";
+            this.OutputTextBox.Text = string.Empty;
             // 
             // groupBox1
             // 
@@ -221,7 +223,7 @@
             this.groupBox1.Size = new System.Drawing.Size(324, 312);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Settings";
+            this.groupBox1.Text = Resources.Settings;
             // 
             // groupBox2
             // 
@@ -232,7 +234,7 @@
             this.groupBox2.Size = new System.Drawing.Size(530, 312);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Output";
+            this.groupBox2.Text = Resources.Output;
             // 
             // menuStrip1
             // 
@@ -243,14 +245,14 @@
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.menuStrip1.Size = new System.Drawing.Size(854, 24);
             this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.Text = string.Empty;
             // 
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
             this.AboutMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.AboutMenuItem.Size = new System.Drawing.Size(48, 24);
-            this.AboutMenuItem.Text = "About";
+            this.AboutMenuItem.Text = Resources.About;
             // 
             // MainForm
             // 
@@ -262,7 +264,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "RSteg Application";
+            this.Text = Resources.ApplicationTitle;
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);

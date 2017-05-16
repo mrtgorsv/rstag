@@ -23,7 +23,7 @@ namespace RstegApp.Presenters
                 ServerIp = defIp;
             ServerPort =
                 ClientPort = defPort;
-            ClientMessage = "test";
+            ClientMessage = "слово";
 
             KeyWord = Resources.KeyWord;
             StegWord = Resources.StegWord;
@@ -118,7 +118,7 @@ namespace RstegApp.Presenters
 
         public void SendClientMessage()
         {
-            DoTask(() => { _client.Send(StegWord, ClientMessage, SendKey); });
+            DoTask(() => { _client.Send(ClientMessage, SendKey); });
         }
 
         private void StopClient()

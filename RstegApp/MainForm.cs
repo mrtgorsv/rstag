@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 using RstegApp.Controls;
+using RstegApp.Forms;
 using RstegApp.Logic;
 using RstegApp.Presenters;
 using RstegApp.Properties;
@@ -16,6 +17,7 @@ namespace RstegApp
 
         public MainForm()
         {
+            Text = Resources.ApplicationTitle;
             _synchronizationContext = SynchronizationContext.Current;
 
             InitializeComponent();
@@ -31,21 +33,6 @@ namespace RstegApp
             AboutMenuItem.Click += OnAboutMenuItemClick;
 
             Closed += OnClosed;
-        }
-
-        private void OnAboutMenuItemClick(object sender, EventArgs e)
-        {
-            MessageBox.Show(this, Resources.AboutMessage, Resources.About);
-        }
-
-        private void OnClosed(object sender, EventArgs e)
-        {
-            CurrentPresenter.Dispose();
-        }
-
-        private void OnKeySendCheckedChanged(object sender, EventArgs e)
-        {
-            CurrentPresenter.SendKey = KeySendCheckBox.Checked;
         }
 
         private void InitOutput()
@@ -148,6 +135,23 @@ namespace RstegApp
         private void OnMessage(object myobject, MessageEventArgs myargs)
         {
             _synchronizationContext.Send(_ => { OutputTextBox.AppendText(myargs.GetMessage() + "\n"); }, this);
+        }
+
+        private void OnAboutMenuItemClick(object sender, EventArgs e)
+        {
+            AboutWindow about = new AboutWindow();
+            about.StartPosition = FormStartPosition.CenterParent;
+            about.ShowDialog(this);
+        }
+
+        private void OnClosed(object sender, EventArgs e)
+        {
+            CurrentPresenter.Dispose();
+        }
+
+        private void OnKeySendCheckedChanged(object sender, EventArgs e)
+        {
+            CurrentPresenter.SendKey = KeySendCheckBox.Checked;
         }
 
         #endregion

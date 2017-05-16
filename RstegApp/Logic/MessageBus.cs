@@ -70,11 +70,11 @@ namespace RstegApp.Logic
             StringBuilder sb = new StringBuilder();
             if (InitiatorType != InitiatorType.Unknown)
             {
-                sb.Append(string.Format(Resources.InitiatorTemplate, InitiatorType));
+                sb.Append(InitiatorType.Equals(InitiatorType.Client) ? Resources.Client : Resources.Server);
             }
             if (!MessageType.Equals(MessageType.Default))
             {
-                sb.Append(string.Format(Resources.MessageTypeTemplate, MessageType));
+                sb.Append(string.Format(Resources.Template_MessageType, MessageType.Equals(MessageType.Send) ? Resources.MessageSended : Resources.MessageRecieved));
             }
             sb.Append(Message);
             return sb.ToString();

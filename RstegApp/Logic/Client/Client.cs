@@ -26,7 +26,7 @@ namespace RstegApp.Logic.Client
             OnMessage(myargs.Message);
         }
 
-        public void Send(string stegWord, string message, bool sendKeyWord)
+        public void Send( string message, bool sendKeyWord)
         {
             SendMessage(_client, message, sendKeyWord);
 

@@ -117,35 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ClientResponse" xml:space="preserve">
-    <value>Response {0}</value>
-  </data>
-  <data name="ClienEndMessage" xml:space="preserve">
-    <value>Enter '{0}' to end..</value>
-  </data>
   <data name="ExceptionMessage" xml:space="preserve">
-    <value>Exception: {0}</value>
-  </data>
-  <data name="EnterTextMessage" xml:space="preserve">
-    <value>Enter your text..</value>
+    <value>Исключение: {0}.</value>
   </data>
   <data name="EndMessage" xml:space="preserve">
-    <value>END</value>
+    <value>Конец</value>
   </data>
   <data name="OkMessage" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="ConfirmMessage" xml:space="preserve">
-    <value>CONFIRM</value>
-  </data>
-  <data name="ConnectionMessage" xml:space="preserve">
-    <value>Connectiong...</value>
-  </data>
-  <data name="Message" xml:space="preserve">
-    <value>Message: {0}</value>
-  </data>
-  <data name="CloseConnection" xml:space="preserve">
-    <value>Connect close..</value>
+    <value>OK.</value>
   </data>
   <data name="KeyWord" xml:space="preserve">
     <value>_key</value>
@@ -154,46 +133,40 @@
     <value>_steg</value>
   </data>
   <data name="Stop" xml:space="preserve">
-    <value>Stop</value>
+    <value>Остановить</value>
   </data>
   <data name="Run" xml:space="preserve">
-    <value>Run</value>
+    <value>Запустить</value>
   </data>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>О программе</value>
   </data>
-  <data name="AboutMessage" xml:space="preserve">
-    <value>About Message</value>
-  </data>
-  <data name="InitiatorTemplate" xml:space="preserve">
-    <value>{0}: </value>
-  </data>
-  <data name="MessageTypeTemplate" xml:space="preserve">
+  <data name="Template_MessageType" xml:space="preserve">
     <value>{0} </value>
   </data>
   <data name="ApplicationNotHavePrivilegesMessage" xml:space="preserve">
     <value>The calling application does not have Administrator privileges.</value>
   </data>
   <data name="DropPacketInitializeMessage" xml:space="preserve">
-    <value>Key found. Start drop packets.</value>
+    <value>Ключ передан. Инициализация сброса пакетов.</value>
   </data>
-  <data name="DropPacketTemplate" xml:space="preserve">
-    <value>Drop packet. Remains: {0}</value>
+  <data name="Template_DropPacket" xml:space="preserve">
+    <value>Пакет отклонен. Осталось: {0}.</value>
   </data>
   <data name="InvalidWinDivertPropertiesMessage" xml:space="preserve">
     <value>This indicates an invalid packet filter string, layer, priority, or flags.</value>
   </data>
   <data name="IPField" xml:space="preserve">
-    <value>IP:</value>
+    <value>IP адрес:</value>
   </data>
   <data name="MessageField" xml:space="preserve">
-    <value>Message:</value>
+    <value>Сообщение:</value>
   </data>
-  <data name="PacketFilterTemplate" xml:space="preserve">
+  <data name="Template_PacketFilter" xml:space="preserve">
     <value>tcp.SrcPort == {0}</value>
   </data>
   <data name="PortField" xml:space="preserve">
-    <value>Port:</value>
+    <value>Порт:</value>
   </data>
   <data name="WinDivertDriverBlockedMessage" xml:space="preserve">
     <value>The WinDivert driver is blocked by security software or you are using a virtualization environment that does not support drivers.</value>
@@ -210,19 +183,61 @@
   <data name="NotValidIp6AddressException" xml:space="preserve">
     <value>Not a valid IPV6 address.</value>
   </data>
-  <data name="DestinationFilterTemplate" xml:space="preserve">
+  <data name="Template_DestinationFilter" xml:space="preserve">
     <value>tcp.DstPort == {0}</value>
   </data>
   <data name="SendLegalDataMessage" xml:space="preserve">
-    <value>Send legal data...</value>
+    <value>Отправка легальных данных...</value>
   </data>
   <data name="SendPacketError" xml:space="preserve">
-    <value>Can\'t send packet</value>
+    <value>Невозможно отправить пакет.</value>
   </data>
   <data name="StegonographyAddedMessage" xml:space="preserve">
-    <value>Stegonography addet to packet.</value>
+    <value>Применение стеганографии к пакету.</value>
   </data>
   <data name="StegonographyInitializeMessage" xml:space="preserve">
-    <value>Key found. Add stegonography to next packets.</value>
+    <value>Ключ найден. К следующему сообщение будет применена стеганография.</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Стего модуль</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Вывод</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="SendKeyWord" xml:space="preserve">
+    <value>Передать ключ</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Сервер</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="AboutTemplate" xml:space="preserve">
+    <value>О программе {0}</value>
+  </data>
+  <data name="AdditionalInfo" xml:space="preserve">
+    <value>ЗНТУ - РТ-812</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Почта</value>
+  </data>
+  <data name="EmailLink" xml:space="preserve">
+    <value>skyskryn@gmail.com</value>
+  </data>
+  <data name="MessageRecieved" xml:space="preserve">
+    <value>Получено сообщение: </value>
+  </data>
+  <data name="MessageSended" xml:space="preserve">
+    <value>Отправлено сообщение:</value>
+  </data>
+  <data name="Template_Version" xml:space="preserve">
+    <value>Версия {0}</value>
   </data>
 </root>
