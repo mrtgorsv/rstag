@@ -10,7 +10,7 @@ namespace RstegApp.Controls
             NumericUpDownControl.ValueChanged += OnValueChanged;
         }
 
-        private void OnValueChanged(object sender, System.EventArgs e)
+        private void OnValueChanged(object sender, EventArgs e)
         {
             OnFieldValueChanged();
         }
@@ -25,7 +25,7 @@ namespace RstegApp.Controls
             FieldLabel.Text = label;
         }
 
-        public void SetLimits(int min , int max)
+        public void SetLimits(int min, int max)
         {
             SetMin(min);
             SetMax(max);
@@ -40,7 +40,7 @@ namespace RstegApp.Controls
             NumericUpDownControl.Minimum = min;
         }
 
-        public void SetMax( int max)
+        public void SetMax(int max)
         {
             if (max < NumericUpDownControl.Value)
             {

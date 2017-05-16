@@ -61,6 +61,33 @@ namespace RstegApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About Message.
+        /// </summary>
+        internal static string AboutMessage {
+            get {
+                return ResourceManager.GetString("AboutMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The calling application does not have Administrator privileges..
+        /// </summary>
+        internal static string ApplicationNotHavePrivilegesMessage {
+            get {
+                return ResourceManager.GetString("ApplicationNotHavePrivilegesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter &apos;{0}&apos; to end...
         /// </summary>
         internal static string ClienEndMessage {
@@ -106,6 +133,33 @@ namespace RstegApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to tcp.DstPort == {0}.
+        /// </summary>
+        internal static string DestinationFilterTemplate {
+            get {
+                return ResourceManager.GetString("DestinationFilterTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key found. Start drop packets..
+        /// </summary>
+        internal static string DropPacketInitializeMessage {
+            get {
+                return ResourceManager.GetString("DropPacketInitializeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drop packet. Remains: {0}.
+        /// </summary>
+        internal static string DropPacketTemplate {
+            get {
+                return ResourceManager.GetString("DropPacketTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to END.
         /// </summary>
         internal static string EndMessage {
@@ -133,6 +187,33 @@ namespace RstegApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}: .
+        /// </summary>
+        internal static string InitiatorTemplate {
+            get {
+                return ResourceManager.GetString("InitiatorTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This indicates an invalid packet filter string, layer, priority, or flags..
+        /// </summary>
+        internal static string InvalidWinDivertPropertiesMessage {
+            get {
+                return ResourceManager.GetString("InvalidWinDivertPropertiesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IP:.
+        /// </summary>
+        internal static string IPField {
+            get {
+                return ResourceManager.GetString("IPField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _key.
         /// </summary>
         internal static string KeyWord {
@@ -151,11 +232,65 @@ namespace RstegApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CONFIRM.
+        ///   Looks up a localized string similar to Message:.
+        /// </summary>
+        internal static string MessageField {
+            get {
+                return ResourceManager.GetString("MessageField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} .
+        /// </summary>
+        internal static string MessageTypeTemplate {
+            get {
+                return ResourceManager.GetString("MessageTypeTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not a valid IPV4 address..
+        /// </summary>
+        internal static string NotValidIp4AddressException {
+            get {
+                return ResourceManager.GetString("NotValidIp4AddressException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not a valid IPV6 address..
+        /// </summary>
+        internal static string NotValidIp6AddressException {
+            get {
+                return ResourceManager.GetString("NotValidIp6AddressException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string OkMessage {
             get {
                 return ResourceManager.GetString("OkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tcp.SrcPort == {0}.
+        /// </summary>
+        internal static string PacketFilterTemplate {
+            get {
+                return ResourceManager.GetString("PacketFilterTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port:.
+        /// </summary>
+        internal static string PortField {
+            get {
+                return ResourceManager.GetString("PortField", resourceCulture);
             }
         }
         
@@ -165,6 +300,42 @@ namespace RstegApp.Properties {
         internal static string Run {
             get {
                 return ResourceManager.GetString("Run", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send legal data....
+        /// </summary>
+        internal static string SendLegalDataMessage {
+            get {
+                return ResourceManager.GetString("SendLegalDataMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can\&apos;t send packet.
+        /// </summary>
+        internal static string SendPacketError {
+            get {
+                return ResourceManager.GetString("SendPacketError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stegonography addet to packet..
+        /// </summary>
+        internal static string StegonographyAddedMessage {
+            get {
+                return ResourceManager.GetString("StegonographyAddedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key found. Add stegonography to next packets..
+        /// </summary>
+        internal static string StegonographyInitializeMessage {
+            get {
+                return ResourceManager.GetString("StegonographyInitializeMessage", resourceCulture);
             }
         }
         
@@ -183,6 +354,33 @@ namespace RstegApp.Properties {
         internal static string Stop {
             get {
                 return ResourceManager.GetString("Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The WinDivert driver is blocked by security software or you are using a virtualization environment that does not support drivers..
+        /// </summary>
+        internal static string WinDivertDriverBlockedMessage {
+            get {
+                return ResourceManager.GetString("WinDivertDriverBlockedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The WinDivert32.sys or WinDivert64.sys driver does not have a valid digital signature.
+        /// </summary>
+        internal static string WinDivertDriverSignatureNotValidMessage {
+            get {
+                return ResourceManager.GetString("WinDivertDriverSignatureNotValidMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The driver files WinDivert32.sys or WinDivert64.sys were not found..
+        /// </summary>
+        internal static string WinDivertSysNotFoundMessage {
+            get {
+                return ResourceManager.GetString("WinDivertSysNotFoundMessage", resourceCulture);
             }
         }
     }

@@ -10,12 +10,14 @@ namespace RstegApp
 {
     public partial class MainForm : Form
     {
-
         public MainFormPresenter CurrentPresenter { get; set; }
+
         private readonly SynchronizationContext _synchronizationContext;
 
         public MainForm()
         {
+            _synchronizationContext = SynchronizationContext.Current;
+
             InitializeComponent();
             InitializePresenter();
 
@@ -26,7 +28,19 @@ namespace RstegApp
 
             KeySendCheckBox.CheckedChanged += OnKeySendCheckedChanged;
 
-            _synchronizationContext = SynchronizationContext.Current;
+            AboutMenuItem.Click += OnAboutMenuItemClick;
+
+            Closed += OnClosed;
+        }
+
+        private void OnAboutMenuItemClick(object sender, EventArgs e)
+        {
+            MessageBox.Show(this, Resources.AboutMessage, Resources.About);
+        }
+
+        private void OnClosed(object sender, EventArgs e)
+        {
+            CurrentPresenter.Dispose();
         }
 
         private void OnKeySendCheckedChanged(object sender, EventArgs e)
@@ -36,7 +50,7 @@ namespace RstegApp
 
         private void InitOutput()
         {
-            CurrentPresenter.MessageRecieve += OnMessageRecieve;
+            CurrentPresenter.Message += OnMessage;
         }
 
         private void InitializePresenter()
@@ -46,8 +60,8 @@ namespace RstegApp
 
         private void InitServerFields()
         {
-            ServerIPField.SetLabel("Server IP address:");
-            ServerPortField.SetLabel("Server port:");
+            ServerIPField.SetLabel(Resources.IPField);
+            ServerPortField.SetLabel(Resources.PortField);
 
             ServerIPField.SetValue(CurrentPresenter.ServerIp);
             ServerPortField.SetValue(CurrentPresenter.ServerPort);
@@ -58,9 +72,9 @@ namespace RstegApp
 
         private void InitClientFields()
         {
-            ClientIpField.SetLabel("Client IP address:");
-            CilentPortField.SetLabel("Client port:");
-            ClientMessageField.SetLabel("Client message:");
+            ClientIpField.SetLabel(Resources.IPField);
+            CilentPortField.SetLabel(Resources.PortField);
+            ClientMessageField.SetLabel(Resources.MessageField);
 
             ClientIpField.SetValue(CurrentPresenter.ClientIp);
             CilentPortField.SetValue(CurrentPresenter.ClientPort);
@@ -77,18 +91,17 @@ namespace RstegApp
             UpdateClientControls();
         }
 
-
         private void RunServerBtn_Click(object sender, EventArgs e)
         {
             CurrentPresenter.UpdateServer();
             UpdateServerControls();
         }
 
-
         private void SendMessageButton_Click(object sender, EventArgs e)
         {
             CurrentPresenter.SendClientMessage();
         }
+
         private void UpdateClientControls()
         {
             ClientRunButton.Text = CurrentPresenter.ClientStarted ? Resources.Stop : Resources.Run;
@@ -96,6 +109,7 @@ namespace RstegApp
             CilentPortField.Enabled = !CurrentPresenter.ClientStarted;
             Refresh();
         }
+
         private void UpdateServerControls()
         {
             RunServerBtn.Text = CurrentPresenter.ServerStarted ? Resources.Stop : Resources.Run;
@@ -130,12 +144,10 @@ namespace RstegApp
         {
             CurrentPresenter.ClientIp = myargs.NewValue.ToString();
         }
-        private void OnMessageRecieve(object myobject, MessageEventArgs myargs)
+
+        private void OnMessage(object myobject, MessageEventArgs myargs)
         {
-            _synchronizationContext.Send(_ =>
-            {
-                OutputTextBox.AppendText(myargs.Message + "\n");
-            } , this);
+            _synchronizationContext.Send(_ => { OutputTextBox.AppendText(myargs.GetMessage() + "\n"); }, this);
         }
 
         #endregion

@@ -31,20 +31,22 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ClientIpField = new RstegApp.Controls.TextField();
+            this.CilentPortField = new RstegApp.Controls.NumericField();
             this.ClientRunButton = new System.Windows.Forms.Button();
+            this.ClientMessageField = new RstegApp.Controls.TextField();
             this.KeySendCheckBox = new System.Windows.Forms.CheckBox();
             this.SendMessageButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ServerIPField = new RstegApp.Controls.TextField();
+            this.ServerPortField = new RstegApp.Controls.NumericField();
             this.RunServerBtn = new System.Windows.Forms.Button();
             this.OutputTextBox = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ClientIpField = new RstegApp.Controls.TextField();
-            this.CilentPortField = new RstegApp.Controls.NumericField();
-            this.ClientMessageField = new RstegApp.Controls.TextField();
-            this.ServerIPField = new RstegApp.Controls.TextField();
-            this.ServerPortField = new RstegApp.Controls.NumericField();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -52,6 +54,7 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -62,7 +65,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 16);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(319, 317);
+            this.tabControl1.Size = new System.Drawing.Size(319, 293);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -71,7 +74,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(311, 291);
+            this.tabPage1.Size = new System.Drawing.Size(311, 267);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Client";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -88,8 +91,26 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(305, 285);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(305, 261);
             this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // ClientIpField
+            // 
+            this.ClientIpField.Location = new System.Drawing.Point(3, 3);
+            this.ClientIpField.MaximumSize = new System.Drawing.Size(0, 30);
+            this.ClientIpField.MinimumSize = new System.Drawing.Size(280, 30);
+            this.ClientIpField.Name = "ClientIpField";
+            this.ClientIpField.Size = new System.Drawing.Size(280, 30);
+            this.ClientIpField.TabIndex = 0;
+            // 
+            // CilentPortField
+            // 
+            this.CilentPortField.Location = new System.Drawing.Point(3, 39);
+            this.CilentPortField.MaximumSize = new System.Drawing.Size(0, 30);
+            this.CilentPortField.MinimumSize = new System.Drawing.Size(280, 30);
+            this.CilentPortField.Name = "CilentPortField";
+            this.CilentPortField.Size = new System.Drawing.Size(280, 30);
+            this.CilentPortField.TabIndex = 1;
             // 
             // ClientRunButton
             // 
@@ -100,6 +121,15 @@
             this.ClientRunButton.Text = "Run";
             this.ClientRunButton.UseVisualStyleBackColor = true;
             this.ClientRunButton.Click += new System.EventHandler(this.ClientRunButton_Click);
+            // 
+            // ClientMessageField
+            // 
+            this.ClientMessageField.Location = new System.Drawing.Point(3, 104);
+            this.ClientMessageField.MaximumSize = new System.Drawing.Size(0, 30);
+            this.ClientMessageField.MinimumSize = new System.Drawing.Size(280, 30);
+            this.ClientMessageField.Name = "ClientMessageField";
+            this.ClientMessageField.Size = new System.Drawing.Size(280, 30);
+            this.ClientMessageField.TabIndex = 2;
             // 
             // KeySendCheckBox
             // 
@@ -129,7 +159,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(311, 291);
+            this.tabPage2.Size = new System.Drawing.Size(311, 267);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Server";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -142,76 +172,8 @@
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(305, 285);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(305, 261);
             this.flowLayoutPanel2.TabIndex = 0;
-            // 
-            // RunServerBtn
-            // 
-            this.RunServerBtn.Location = new System.Drawing.Point(3, 75);
-            this.RunServerBtn.Name = "RunServerBtn";
-            this.RunServerBtn.Size = new System.Drawing.Size(299, 23);
-            this.RunServerBtn.TabIndex = 2;
-            this.RunServerBtn.Text = "Run";
-            this.RunServerBtn.UseVisualStyleBackColor = true;
-            this.RunServerBtn.Click += new System.EventHandler(this.RunServerBtn_Click);
-            // 
-            // OutputTextBox
-            // 
-            this.OutputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OutputTextBox.Location = new System.Drawing.Point(3, 16);
-            this.OutputTextBox.Name = "OutputTextBox";
-            this.OutputTextBox.Size = new System.Drawing.Size(524, 317);
-            this.OutputTextBox.TabIndex = 1;
-            this.OutputTextBox.Text = "";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.tabControl1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(324, 336);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Settings";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.OutputTextBox);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(324, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(530, 336);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Output";
-            // 
-            // ClientIpField
-            // 
-            this.ClientIpField.Location = new System.Drawing.Point(3, 3);
-            this.ClientIpField.MaximumSize = new System.Drawing.Size(0, 30);
-            this.ClientIpField.MinimumSize = new System.Drawing.Size(280, 30);
-            this.ClientIpField.Name = "ClientIpField";
-            this.ClientIpField.Size = new System.Drawing.Size(280, 30);
-            this.ClientIpField.TabIndex = 0;
-            // 
-            // CilentPortField
-            // 
-            this.CilentPortField.Location = new System.Drawing.Point(3, 39);
-            this.CilentPortField.MaximumSize = new System.Drawing.Size(0, 30);
-            this.CilentPortField.MinimumSize = new System.Drawing.Size(280, 30);
-            this.CilentPortField.Name = "CilentPortField";
-            this.CilentPortField.Size = new System.Drawing.Size(280, 30);
-            this.CilentPortField.TabIndex = 1;
-            // 
-            // ClientMessageField
-            // 
-            this.ClientMessageField.Location = new System.Drawing.Point(3, 104);
-            this.ClientMessageField.MaximumSize = new System.Drawing.Size(0, 30);
-            this.ClientMessageField.MinimumSize = new System.Drawing.Size(280, 30);
-            this.ClientMessageField.Name = "ClientMessageField";
-            this.ClientMessageField.Size = new System.Drawing.Size(280, 30);
-            this.ClientMessageField.TabIndex = 2;
             // 
             // ServerIPField
             // 
@@ -231,6 +193,65 @@
             this.ServerPortField.Size = new System.Drawing.Size(280, 30);
             this.ServerPortField.TabIndex = 1;
             // 
+            // RunServerBtn
+            // 
+            this.RunServerBtn.Location = new System.Drawing.Point(3, 75);
+            this.RunServerBtn.Name = "RunServerBtn";
+            this.RunServerBtn.Size = new System.Drawing.Size(299, 23);
+            this.RunServerBtn.TabIndex = 2;
+            this.RunServerBtn.Text = "Run";
+            this.RunServerBtn.UseVisualStyleBackColor = true;
+            this.RunServerBtn.Click += new System.EventHandler(this.RunServerBtn_Click);
+            // 
+            // OutputTextBox
+            // 
+            this.OutputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OutputTextBox.Location = new System.Drawing.Point(3, 16);
+            this.OutputTextBox.Name = "OutputTextBox";
+            this.OutputTextBox.Size = new System.Drawing.Size(524, 293);
+            this.OutputTextBox.TabIndex = 1;
+            this.OutputTextBox.Text = "";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tabControl1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.Location = new System.Drawing.Point(0, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(324, 312);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Settings";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.OutputTextBox);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(324, 24);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(530, 312);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Output";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.menuStrip1.Size = new System.Drawing.Size(854, 24);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // AboutMenuItem
+            // 
+            this.AboutMenuItem.Name = "AboutMenuItem";
+            this.AboutMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AboutMenuItem.Size = new System.Drawing.Size(48, 24);
+            this.AboutMenuItem.Text = "About";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,6 +259,8 @@
             this.ClientSize = new System.Drawing.Size(854, 336);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "RSteg Application";
             this.tabControl1.ResumeLayout(false);
@@ -248,7 +271,10 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -271,6 +297,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button SendMessageButton;
         private System.Windows.Forms.CheckBox KeySendCheckBox;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
     }
 }
 

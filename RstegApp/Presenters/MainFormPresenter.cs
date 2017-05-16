@@ -7,7 +7,7 @@ using RstegApp.Properties;
 
 namespace RstegApp.Presenters
 {
-    public class MainFormPresenter : MessageBus
+    public class MainFormPresenter : MessageBus, IDisposable
     {
         public string KeyWord { get; set; }
         public string StegWord { get; set; }
@@ -70,10 +70,8 @@ namespace RstegApp.Presenters
                     return;
                 }
 
-                _server.Stop();
-                _server.MessageRecieve -= OnServerMessageRecieve;
-                _server.MessageSend -= OnServerMessageSend;
                 _server.Message -= OnServerMessage;
+                _server.Dispose();
                 _server = null;
             });
         }
@@ -81,12 +79,9 @@ namespace RstegApp.Presenters
 
         private void RunServer()
         {
-            StopServer();
             DoTask(() =>
             {
                 _server = new Server(ServerIp, ServerPort);
-                _server.MessageRecieve += OnServerMessageRecieve;
-                _server.MessageSend += OnServerMessageSend;
                 _server.Message += OnServerMessage;
                 _server.Start();
             });
@@ -123,20 +118,18 @@ namespace RstegApp.Presenters
 
         public void SendClientMessage()
         {
-            DoTask(() =>
-            {
-                _client.Send(StegWord, ClientMessage, SendKey);
-            });
+            DoTask(() => { _client.Send(StegWord, ClientMessage, SendKey); });
         }
 
         private void StopClient()
         {
             DoTask(() =>
             {
-                _client.Stop();
-                _client.MessageRecieve -= OnClientMessageRecieve;
-                _client.Message -= OnClientMessage;
-                _client = null;
+                if (_client != null)
+                {
+                    _client.Dispose();
+                    _client = null;
+                }
             });
         }
 
@@ -145,9 +138,16 @@ namespace RstegApp.Presenters
         {
             DoTask(() =>
             {
-                _client = new Client(ClientIp, ClientPort);
-                _client.MessageRecieve += OnClientMessageRecieve;
-                _client.MessageSend += OnClientMessageSend;
+                try
+                {
+                    _client = new Client(ClientIp, ClientPort);
+                }
+                catch (Exception e)
+                {
+                    OnMessage(e.Message);
+                    return;
+                }
+
                 _client.Message += OnClientMessage;
             });
         }
@@ -156,33 +156,26 @@ namespace RstegApp.Presenters
 
         #region Event handlers
 
-        private void OnServerMessageRecieve(object myobject, MessageEventArgs myargs)
-        {
-            OnMessageRecieved(string.Format("Server : Recieve {0}", myargs.Message));
-        }
-
-        private void OnClientMessageRecieve(object myobject, MessageEventArgs myargs)
-        {
-            OnMessageRecieved(string.Format("Client : Recieve {0}", myargs.Message));
-        }
-
-        private void OnClientMessageSend(object myobject, MessageEventArgs myargs)
-        {
-            OnMessageRecieved(string.Format("Client : Send {0}", myargs.Message));
-        }
-
-        private void OnServerMessageSend(object myobject, MessageEventArgs myargs)
-        {
-            OnMessageRecieved(string.Format("Server : Send {0}", myargs.Message));
-        }
         private void OnClientMessage(object myobject, MessageEventArgs myargs)
         {
-            OnMessageRecieved(string.Format("Client : {0}", myargs.Message));
+            OnMessage(myargs);
         }
 
         private void OnServerMessage(object myobject, MessageEventArgs myargs)
         {
-            OnMessageRecieved(string.Format("Server : {0}", myargs.Message));
+            OnMessage(myargs);
+        }
+
+        public void Dispose()
+        {
+            if (_server != null)
+            {
+                _server.Dispose();
+            }
+            if (_client != null)
+            {
+                _client.Dispose();
+            }
         }
 
         #endregion

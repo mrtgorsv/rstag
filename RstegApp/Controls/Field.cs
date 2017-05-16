@@ -8,11 +8,11 @@ namespace RstegApp.Controls
         public delegate void ValueChangedEventHandler(object myObject, ValueChangedEventArgs myArgs);
 
         public event ValueChangedEventHandler FieldValueChanged;
+
         public Field()
         {
             InitializeComponent();
         }
-
 
         protected virtual void OnFieldValueChanged()
         {
@@ -33,6 +33,7 @@ namespace RstegApp.Controls
             throw new NotSupportedException();
         }
     }
+
     public class ValueChangedEventArgs
     {
         public object NewValue { get; set; }

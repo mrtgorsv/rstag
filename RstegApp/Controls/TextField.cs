@@ -25,7 +25,7 @@
 
         public override void SetValue(object value)
         {
-            TextControl.Text= value.ToString();
+            TextControl.Text = value.ToString();
         }
     }
 }

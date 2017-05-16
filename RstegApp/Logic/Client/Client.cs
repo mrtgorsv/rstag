@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Text;
 using System.Net.Sockets;
+using RstegApp.Logic.Capture;
+using RstegApp.Models.Enums;
 using RstegApp.Properties;
 
 namespace RstegApp.Logic.Client
 {
-    class Client : MessageBus
+    class Client : MessageBus, IDisposable
     {
-        private TcpClient _client;
+        private readonly TcpClient _client;
         private readonly PacketCapturer _packetCapturer;
 
-
-        public Client(string ipAddress, short port)
+        public Client(string ipAddress, short port) : base(InitiatorType.Client)
         {
             _client = new TcpClient(ipAddress, port);
 
@@ -64,9 +65,13 @@ namespace RstegApp.Logic.Client
             return message;
         }
 
-        public void Stop()
+        public void Dispose()
         {
-            _client = null;
+            if (_client != null)
+            {
+                ((IDisposable) _client).Dispose();
+            }
+            _packetCapturer.Dispose();
         }
     }
 }

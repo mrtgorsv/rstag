@@ -2,18 +2,21 @@
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using PacketDotNet;
+using RstegApp.Logic.Utils;
 using RstegApp.Properties;
 using SharpPcap;
 using SharpPcap.WinPcap;
 
-namespace RstegApp.Logic
+namespace RstegApp.Logic.Capture
 {
-    class PacketCapturer : MessageBus
+    class PacketCapturer : MessageBus, IDisposable
     {
         private byte[] _keyWord;
         private string _stegWord;
-        private int maxBuff = 0xFFFF;
+        private const int MaxBuff = 0xFFFF;
         private readonly int _port;
         private int _dropPacketCount;
         private short _stegPacketCount;
@@ -21,12 +24,20 @@ namespace RstegApp.Logic
         private bool _dropPacket;
         private bool _stegPacket;
         private ICaptureDevice _device;
+        private IntPtr _dropHandler;
+        private IntPtr _stegHandler;
+        private Task _dropTask;
+        private Task _stegTask;
+        private readonly CancellationTokenSource _dropTokenSource;
+        private readonly CancellationTokenSource _stegTokenSource;
 
         private bool _isServer;
 
         public PacketCapturer(short port)
         {
             _port = port;
+            _dropTokenSource = new CancellationTokenSource();
+            _stegTokenSource = new CancellationTokenSource();
         }
 
         private CaptureDeviceList DeviceList
@@ -39,7 +50,7 @@ namespace RstegApp.Logic
             _isServer = isServer;
             _stegWord = Resources.StegWord;
 
-            var device  = DeviceList.FirstOrDefault(d => d is WinPcapDevice);
+            var device = DeviceList.FirstOrDefault(d => d is WinPcapDevice);
 
             if (device == null)
             {
@@ -69,7 +80,6 @@ namespace RstegApp.Logic
 
             if (tcpPacket != null)
             {
-
                 if (tcpPacket.DestinationPort == _port)
                 {
                     if (OptionTcp.UnsafeCompareByte(tcpPacket.PayloadData, _keyWord))
@@ -80,11 +90,12 @@ namespace RstegApp.Logic
                             {
                                 return;
                             }
-                            Drop();
+
+                            _dropTask = Task.Factory.StartNew(Drop, _dropTokenSource.Token);
                         }
                         else
                         {
-                            Steg();
+                            _stegTask = Task.Factory.StartNew(Steg, _stegTokenSource.Token);
                         }
                     }
                 }
@@ -93,21 +104,22 @@ namespace RstegApp.Logic
 
         private void Drop()
         {
+            _dropTokenSource.Token.ThrowIfCancellationRequested();
             try
             {
                 _dropPacket = true;
-                _dropPacketCount = _random.Next(2 , 4);
-                IntPtr handle = WinDivertMethods.WinDivertOpen(string.Format("tcp.SrcPort == {0}", _port),
+                _dropPacketCount = _random.Next(2, 4);
+                _dropHandler = WinDivertMethods.WinDivertOpen(string.Format(Resources.PacketFilterTemplate, _port),
                     WINDIVERT_LAYER.WINDIVERT_LAYER_NETWORK, 0, 0);
 
-                OnMessage(string.Format("Key found , start drop packets. Drop remains : {0}", _dropPacketCount));
+                OnMessage(Resources.DropPacketInitializeMessage);
 
                 while (_dropPacketCount > 0)
                 {
                     unsafe
                     {
                         uint packetLen = 0;
-                        byte[] pack = new byte[maxBuff];
+                        byte[] pack = new byte[MaxBuff];
                         WINDIVERT_ADDRESS addr = new WINDIVERT_ADDRESS();
                         WINDIVERT_TCPHDR** packHeader = default(WINDIVERT_TCPHDR**);
 
@@ -116,19 +128,22 @@ namespace RstegApp.Logic
                             continue;
                         }
 
-                        if (!WinDivertMethods.WinDivertRecv(handle, pack, (uint)pack.Length, ref addr, ref packetLen))
+                        if (
+                            !WinDivertMethods.WinDivertRecv(_dropHandler, pack, (uint) pack.Length, ref addr,
+                                ref packetLen))
                         {
                             continue;
                         }
 
-                        WinDivertMethods.WinDivertHelperParsePacket(pack, packetLen, null, null, null, null, packHeader, null, null, null);
+                        WinDivertMethods.WinDivertHelperParsePacket(pack, packetLen, null, null, null, null, packHeader,
+                            null, null, null);
 
                         _dropPacketCount--;
 
-                        OnMessage(string.Format("Drop packet: length '{0}'. Remains: {1}", packetLen,  _dropPacketCount));
+                        OnMessage(string.Format(Resources.DropPacketTemplate, _dropPacketCount));
                     }
                 }
-                WinDivertMethods.WinDivertClose(handle);
+                WinDivertMethods.WinDivertClose(_dropHandler);
                 _dropPacket = false;
             }
             catch (Exception exp)
@@ -144,19 +159,19 @@ namespace RstegApp.Logic
             switch (errorCode)
             {
                 case 2:
-                    OnMessage("The driver files WinDivert32.sys or WinDivert64.sys were not found.");
+                    OnMessage(Resources.WinDivertSysNotFoundMessage);
                     break;
                 case 5:
-                    OnMessage("The calling application does not have Administrator privileges");
+                    OnMessage(Resources.ApplicationNotHavePrivilegesMessage);
                     break;
                 case 87:
-                    OnMessage("This indicates an invalid packet filter string, layer, priority, or flags");
+                    OnMessage(Resources.InvalidWinDivertPropertiesMessage);
                     break;
                 case 577:
-                    OnMessage("The WinDivert32.sys or WinDivert64.sys driver does not have a valid digital signature");
+                    OnMessage(Resources.WinDivertDriverSignatureNotValidMessage);
                     break;
                 case 1275:
-                    OnMessage("The WinDivert32.sys or WinDivert64.sys driver does not have a valid digital signature");
+                    OnMessage(Resources.WinDivertDriverBlockedMessage);
                     break;
                 default:
                     return false;
@@ -171,43 +186,49 @@ namespace RstegApp.Logic
                 _stegPacket = true;
                 int breakCount = 1;
                 _stegPacketCount = 1;
-                OnMessage(string.Format("Key found , add stegonography to next packets.Remains : {0}", _stegPacketCount));
+                _stegTokenSource.Token.ThrowIfCancellationRequested();
+
+                OnMessage(Resources.StegonographyInitializeMessage);
                 unsafe
                 {
-                    IntPtr handle = WinDivertMethods.WinDivertOpen(string.Format("tcp.DstPort == {0}", _port), WINDIVERT_LAYER.WINDIVERT_LAYER_NETWORK, 0, 0);
+                    _stegHandler = WinDivertMethods.WinDivertOpen(string.Format(Resources.DestinationFilterTemplate, _port),
+                        WINDIVERT_LAYER.WINDIVERT_LAYER_NETWORK, 0, 0);
 
                     while (_stegPacketCount > 0)
                     {
-                        byte[] pack = new byte[maxBuff];
+                        byte[] pack = new byte[MaxBuff];
                         WINDIVERT_ADDRESS addr = new WINDIVERT_ADDRESS();
                         WINDIVERT_TCPHDR** packHeader = default(WINDIVERT_TCPHDR**);
                         uint packetLen = 0;
 
-                        if (!WinDivertMethods.WinDivertRecv(handle, pack, (uint)pack.Length, ref addr, ref packetLen))
+                        if (
+                            !WinDivertMethods.WinDivertRecv(_stegHandler, pack, (uint) pack.Length, ref addr,
+                                ref packetLen))
                         {
                             continue;
                         }
 
 
-                        WinDivertMethods.WinDivertHelperParsePacket(pack, packetLen, null, null, null, null, packHeader, null, null, null);
+                        WinDivertMethods.WinDivertHelperParsePacket(pack, packetLen, null, null, null, null, packHeader,
+                            null, null, null);
 
-                        
+
                         if (breakCount > 0)
                         {
-                            OnMessage("Send legal data...");
+                            OnMessage(Resources.SendLegalDataMessage);
                         }
                         else
                         {
-                            OnMessage("Stegonography addet to packet.");
+                            OnMessage(Resources.StegonographyAddedMessage);
                             for (int i = 0; i < _stegWord.Length; i++)
                             {
                                 pack[41 + i] = Convert.ToByte(_stegWord[i]);
                             }
                         }
 
-                        if (!WinDivertMethods.WinDivertSend(handle, pack, packetLen, ref addr, IntPtr.Zero))
+                        if (!WinDivertMethods.WinDivertSend(_stegHandler, pack, packetLen, ref addr, IntPtr.Zero))
                         {
-                            OnMessage("Can\'t send packet");
+                            OnMessage(Resources.SendPacketError);
                         }
                         else
                         {
@@ -221,7 +242,7 @@ namespace RstegApp.Logic
                             }
                         }
                     }
-                    WinDivertMethods.WinDivertClose(handle);
+                    WinDivertMethods.WinDivertClose(_stegHandler);
                 }
                 _stegPacket = false;
             }
@@ -231,12 +252,27 @@ namespace RstegApp.Logic
             }
         }
 
-        private void Close()
+        public void Dispose()
         {
-            if (_device != null)
+            try
             {
-                _device.StopCapture();
-                _device.Close();
+                if (_device != null)
+                {
+                    _device.OnPacketArrival -= device_OnPaketArrival;
+                    _device.Close();
+                }
+                if (_dropTask != null)
+                {
+                    _dropTokenSource.Cancel();
+                }
+                if (_stegTask != null)
+                {
+                    _stegTokenSource.Cancel();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
     }

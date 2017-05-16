@@ -2,20 +2,21 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using RstegApp.Logic.Capture;
+using RstegApp.Models.Enums;
 using RstegApp.Properties;
 
 namespace RstegApp.Logic.Server
 {
-    class Server : MessageBus
+    class Server : MessageBus, IDisposable
     {
-        private PacketCapturer _packetCapturer;
-        private TcpListener _listener;
+        private readonly PacketCapturer _packetCapturer;
+        private readonly TcpListener _listener;
 
         private TcpClient _client;
 
-        public Server(string ipAdress, short port)
+        public Server(string ipAdress, short port) : base(InitiatorType.Server)
         {
             _packetCapturer = new PacketCapturer(port);
 
@@ -23,15 +24,6 @@ namespace RstegApp.Logic.Server
 
             IPAddress host = IPAddress.Parse(ipAdress);
             _listener = new TcpListener(host, port);
-
-            // Определим нужное максимальное количество потоков
-            // Пусть будет по 4 на каждый процессор
-            int maxThreadsCount = Environment.ProcessorCount * 4;
-            Console.WriteLine(maxThreadsCount.ToString());
-            // Установим максимальное количество рабочих потоков
-            ThreadPool.SetMaxThreads(maxThreadsCount, maxThreadsCount);
-            // Установим минимальное количество рабочих потоков
-            ThreadPool.SetMinThreads(2, 2);
         }
 
         private void OnPacketCapturerMessage(object myobject, MessageEventArgs myargs)
@@ -61,7 +53,6 @@ namespace RstegApp.Logic.Server
                 }
 
                 _client.Close();
-
             }
         }
 
@@ -98,7 +89,6 @@ namespace RstegApp.Logic.Server
 
         public void Start()
         {
-            Stop();
             _listener.Start();
             _packetCapturer.StartCapturing(true);
 
@@ -107,9 +97,14 @@ namespace RstegApp.Logic.Server
             Task.Factory.StartNew(ReadClient);
         }
 
-        public void Stop()
+        public void Dispose()
         {
             _listener.Stop();
+            if (_client != null)
+            {
+                ((IDisposable) _client).Dispose();
+            }
+            _packetCapturer.Dispose();
         }
     }
 }

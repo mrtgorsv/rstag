@@ -133,7 +133,7 @@
     <value>END</value>
   </data>
   <data name="OkMessage" xml:space="preserve">
-    <value>CONFIRM</value>
+    <value>OK</value>
   </data>
   <data name="ConfirmMessage" xml:space="preserve">
     <value>CONFIRM</value>
@@ -158,5 +158,71 @@
   </data>
   <data name="Run" xml:space="preserve">
     <value>Run</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutMessage" xml:space="preserve">
+    <value>About Message</value>
+  </data>
+  <data name="InitiatorTemplate" xml:space="preserve">
+    <value>{0}: </value>
+  </data>
+  <data name="MessageTypeTemplate" xml:space="preserve">
+    <value>{0} </value>
+  </data>
+  <data name="ApplicationNotHavePrivilegesMessage" xml:space="preserve">
+    <value>The calling application does not have Administrator privileges.</value>
+  </data>
+  <data name="DropPacketInitializeMessage" xml:space="preserve">
+    <value>Key found. Start drop packets.</value>
+  </data>
+  <data name="DropPacketTemplate" xml:space="preserve">
+    <value>Drop packet. Remains: {0}</value>
+  </data>
+  <data name="InvalidWinDivertPropertiesMessage" xml:space="preserve">
+    <value>This indicates an invalid packet filter string, layer, priority, or flags.</value>
+  </data>
+  <data name="IPField" xml:space="preserve">
+    <value>IP:</value>
+  </data>
+  <data name="MessageField" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="PacketFilterTemplate" xml:space="preserve">
+    <value>tcp.SrcPort == {0}</value>
+  </data>
+  <data name="PortField" xml:space="preserve">
+    <value>Port:</value>
+  </data>
+  <data name="WinDivertDriverBlockedMessage" xml:space="preserve">
+    <value>The WinDivert driver is blocked by security software or you are using a virtualization environment that does not support drivers.</value>
+  </data>
+  <data name="WinDivertDriverSignatureNotValidMessage" xml:space="preserve">
+    <value>The WinDivert32.sys or WinDivert64.sys driver does not have a valid digital signature</value>
+  </data>
+  <data name="WinDivertSysNotFoundMessage" xml:space="preserve">
+    <value>The driver files WinDivert32.sys or WinDivert64.sys were not found.</value>
+  </data>
+  <data name="NotValidIp4AddressException" xml:space="preserve">
+    <value>Not a valid IPV4 address.</value>
+  </data>
+  <data name="NotValidIp6AddressException" xml:space="preserve">
+    <value>Not a valid IPV6 address.</value>
+  </data>
+  <data name="DestinationFilterTemplate" xml:space="preserve">
+    <value>tcp.DstPort == {0}</value>
+  </data>
+  <data name="SendLegalDataMessage" xml:space="preserve">
+    <value>Send legal data...</value>
+  </data>
+  <data name="SendPacketError" xml:space="preserve">
+    <value>Can\'t send packet</value>
+  </data>
+  <data name="StegonographyAddedMessage" xml:space="preserve">
+    <value>Stegonography addet to packet.</value>
+  </data>
+  <data name="StegonographyInitializeMessage" xml:space="preserve">
+    <value>Key found. Add stegonography to next packets.</value>
   </data>
 </root>
