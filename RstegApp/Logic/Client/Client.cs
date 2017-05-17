@@ -26,19 +26,19 @@ namespace RstegApp.Logic.Client
             OnMessage(myargs.Message);
         }
 
-        public void Send( string message, bool sendKeyWord)
+        public void Send(string message, bool sendKeyWord)
         {
-            SendMessage(_client, message, sendKeyWord);
+            SendMessage(message, sendKeyWord);
 
             string res = ReadResponse(_client);
 
             if (res.Equals(Resources.EndMessage))
             {
-                SendMessage(_client, Resources.EndMessage);
+                SendMessage(Resources.EndMessage);
             }
         }
 
-        private void SendMessage(TcpClient client, string mess, bool sendKeyWord = false)
+        private void SendMessage(string mess, bool sendKeyWord = false)
         {
             byte[] bts = Encoding.Unicode.GetBytes(mess);
             if (sendKeyWord)
@@ -47,7 +47,7 @@ namespace RstegApp.Logic.Client
             }
 
             OnMessageSended(Encoding.Unicode.GetString(bts));
-            client.GetStream().Write(bts, 0, bts.Length);
+            _client.GetStream().Write(bts, 0, bts.Length);
         }
 
         private string ReadResponse(TcpClient client)

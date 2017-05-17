@@ -8,18 +8,13 @@ namespace RstegApp.Logic
     {
         private readonly InitiatorType _initiatorType;
 
+        public delegate void MessageEventHandler(object myObject, MessageEventArgs myArgs);
+        public event MessageEventHandler Message;
+
         public MessageBus(InitiatorType initiatorType = InitiatorType.Unknown)
         {
             _initiatorType = initiatorType;
         }
-
-        public delegate void MessageRecieveEventHandler(object myObject, MessageEventArgs myArgs);
-
-        public delegate void MessageSendEventHandler(object myObject, MessageEventArgs myArgs);
-
-        public delegate void MessageEventHandler(object myObject, MessageEventArgs myArgs);
-
-        public event MessageEventHandler Message;
 
         protected virtual void OnMessage(string msg, MessageType messageType = MessageType.Default)
         {

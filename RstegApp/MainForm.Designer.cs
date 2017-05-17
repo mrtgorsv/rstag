@@ -78,7 +78,7 @@ namespace RstegApp
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(311, 267);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = Resources.Client;
+            this.tabPage1.Text = global::RstegApp.Properties.Resources.Client;
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel1
@@ -120,7 +120,7 @@ namespace RstegApp
             this.ClientRunButton.Name = "ClientRunButton";
             this.ClientRunButton.Size = new System.Drawing.Size(299, 23);
             this.ClientRunButton.TabIndex = 3;
-            this.ClientRunButton.Text = Resources.Run;
+            this.ClientRunButton.Text = global::RstegApp.Properties.Resources.Run;
             this.ClientRunButton.UseVisualStyleBackColor = true;
             this.ClientRunButton.Click += new System.EventHandler(this.ClientRunButton_Click);
             // 
@@ -142,7 +142,7 @@ namespace RstegApp
             this.KeySendCheckBox.Name = "KeySendCheckBox";
             this.KeySendCheckBox.Size = new System.Drawing.Size(172, 17);
             this.KeySendCheckBox.TabIndex = 5;
-            this.KeySendCheckBox.Text = Resources.SendKeyWord;
+            this.KeySendCheckBox.Text = global::RstegApp.Properties.Resources.SendKeyWord;
             this.KeySendCheckBox.UseVisualStyleBackColor = true;
             // 
             // SendMessageButton
@@ -151,7 +151,7 @@ namespace RstegApp
             this.SendMessageButton.Name = "SendMessageButton";
             this.SendMessageButton.Size = new System.Drawing.Size(299, 23);
             this.SendMessageButton.TabIndex = 4;
-            this.SendMessageButton.Text = Resources.Send;
+            this.SendMessageButton.Text = global::RstegApp.Properties.Resources.Send;
             this.SendMessageButton.UseVisualStyleBackColor = true;
             this.SendMessageButton.Click += new System.EventHandler(this.SendMessageButton_Click);
             // 
@@ -163,7 +163,7 @@ namespace RstegApp
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(311, 267);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = Resources.Server;
+            this.tabPage2.Text = global::RstegApp.Properties.Resources.Server;
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel2
@@ -201,7 +201,7 @@ namespace RstegApp
             this.RunServerBtn.Name = "RunServerBtn";
             this.RunServerBtn.Size = new System.Drawing.Size(299, 23);
             this.RunServerBtn.TabIndex = 2;
-            this.RunServerBtn.Text = Resources.Run;
+            this.RunServerBtn.Text = global::RstegApp.Properties.Resources.Run;
             this.RunServerBtn.UseVisualStyleBackColor = true;
             this.RunServerBtn.Click += new System.EventHandler(this.RunServerBtn_Click);
             // 
@@ -212,7 +212,7 @@ namespace RstegApp
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.Size = new System.Drawing.Size(524, 293);
             this.OutputTextBox.TabIndex = 1;
-            this.OutputTextBox.Text = string.Empty;
+            this.OutputTextBox.Text = "";
             // 
             // groupBox1
             // 
@@ -223,7 +223,7 @@ namespace RstegApp
             this.groupBox1.Size = new System.Drawing.Size(324, 312);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = Resources.Settings;
+            this.groupBox1.Text = "Настройки";
             // 
             // groupBox2
             // 
@@ -234,25 +234,25 @@ namespace RstegApp
             this.groupBox2.Size = new System.Drawing.Size(530, 312);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = Resources.Output;
+            this.groupBox2.Text = "Вывод";
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AboutMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Margin = new System.Windows.Forms.Padding(3);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.menuStrip1.Size = new System.Drawing.Size(854, 24);
             this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = string.Empty;
             // 
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
             this.AboutMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.AboutMenuItem.Size = new System.Drawing.Size(48, 24);
-            this.AboutMenuItem.Text = Resources.About;
+            this.AboutMenuItem.Size = new System.Drawing.Size(90, 24);
+            this.AboutMenuItem.Text = global::RstegApp.Properties.Resources.About;
             // 
             // MainForm
             // 
@@ -264,7 +264,7 @@ namespace RstegApp
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = Resources.ApplicationTitle;
+            this.Text = "Стего модуль";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);

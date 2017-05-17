@@ -10,7 +10,7 @@ namespace RstegApp.Forms
         public AboutWindow()
         {
             InitializeComponent();
-            Text = string.Format(Resources.AboutTemplate, Resources.ApplicationTitle);
+            Text = Resources.About;
             labelProductName.Text = Resources.ApplicationTitle;
             labelVersion.Text = String.Format(Resources.Template_Version, AssemblyVersion);
             InfoLabel.Text = Resources.AdditionalInfo;

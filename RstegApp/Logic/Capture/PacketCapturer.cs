@@ -179,7 +179,7 @@ namespace RstegApp.Logic.Capture
             return true;
         }
 
-        public void Steg()
+        private void Steg()
         {
             try
             {
